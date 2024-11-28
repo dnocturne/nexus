@@ -1,0 +1,19 @@
+{
+  "name": "nexus",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/gamedig": "^5.0.3",
+    "discord.js": "^14.16.3",
+    "gamedig": "^5.1.4",
+    "mongoose": "^8.8.3",
+    "sunar": "^0.6.1"
+  }
+}
