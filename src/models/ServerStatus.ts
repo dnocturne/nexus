@@ -1,4 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+
+export interface IServerStatus extends mongoose.Document {
+    channelId: string;
+    messageId?: string;
+    serverIp: string;
+    serverPort: number;
+    lastQuery: Date;
+    isOnline: boolean;
+    playerCount: number;
+    maxPlayers: number;
+    players: string[];
+}
 
 const ServerStatusSchema = new mongoose.Schema({
     channelId: { type: String, required: true },
@@ -12,4 +24,4 @@ const ServerStatusSchema = new mongoose.Schema({
     players: [String],
 });
 
-export const ServerStatus = mongoose.model('ServerStatus', ServerStatusSchema);
+export const ServerStatus = mongoose.model<IServerStatus>("ServerStatus", ServerStatusSchema);
