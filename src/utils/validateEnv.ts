@@ -1,3 +1,5 @@
+//src/utils/validateEnv.ts
+
 export const validateEnv = () => {
 	const requiredEnvVars = [
 		"MONGODB_URL",

@@ -1,3 +1,5 @@
+//src/commands/moderation/clear.ts
+
 import { Slash, execute } from "sunar";
 import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
 

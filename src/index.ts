@@ -1,14 +1,11 @@
+// src/index.ts
 import { Client, dirname, load } from "sunar";
+import { GatewayIntentBits } from "discord.js";
 import { validateEnv } from "./utils/validateEnv";
 import { connectDatabase } from "./utils/database";
-import { MinecraftMonitor } from "./services/MinecraftMonitor";
-import { GatewayIntentBits } from "discord.js";
 
 const start = async () => {
-	// Validate environment variables
 	validateEnv();
-
-	// Connect to MongoDB
 	await connectDatabase();
 
 	const client = new Client({
@@ -19,15 +16,10 @@ const start = async () => {
 		],
 	});
 
-	await load(`${dirname(import.meta.url)}/{commands,signals}/**/*.{js,ts}`);
-
-	// Start Minecraft server monitoring after client is ready
-	client.once("ready", () => {
-		console.log("Bot is ready!");
-		MinecraftMonitor.startMonitoring(client);
-	});
-
-	client.login(process.env.DISCORD_TOKEN);
+	await load(
+		`${dirname(import.meta.url)}/{commands,signals,middleware,interactions}/**/*.{js,ts}`,
+	);
+	await client.login(process.env.DISCORD_TOKEN);
 };
 
-start();
+start().catch(console.error);

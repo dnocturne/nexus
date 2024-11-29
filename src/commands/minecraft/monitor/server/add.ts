@@ -1,40 +1,56 @@
-import { Group, execute } from 'sunar';
-import { ServerStatus } from '../../../../models/ServerStatus';
-import { MinecraftMonitor } from '../../../../services/MinecraftMonitor';
+// src/commands/minecraft/monitor/server/add.ts
+import { Group, execute, config, protect } from "sunar";
+import { ServerStatus } from "../../../../models/ServerStatus";
+import { MinecraftMonitor } from "../../../../services/MinecraftMonitor";
+import { adminOnly } from "../../../../middleware/adminOnly";
 
-const group = new Group('monitor', 'server', 'add');
+const group = new Group("monitor", "server", "add");
+
+// Add cooldown and admin-only protection
+config(group, {
+	cooldown: {
+		time: 30000, // 30 seconds
+	},
+});
+
+protect(group, [adminOnly]);
 
 execute(group, async (interaction) => {
-    await interaction.deferReply();
+	await interaction.deferReply();
 
-    const ip = interaction.options.getString('ip', true);
-    const port = interaction.options.getInteger('port') ?? 25565;
+	const ip = interaction.options.getString("ip", true);
+	const port = interaction.options.getInteger("port") ?? 25565;
 
-    try {
-        // Check if monitor already exists for this channel
-        let serverStatus = await ServerStatus.findOne({ channelId: interaction.channelId });
+	try {
+		// Check for existing monitor
+		const existingMonitor = await ServerStatus.findOne({
+			channelId: interaction.channelId,
+		});
 
-        if (serverStatus) {
-            serverStatus.serverIp = ip;
-            serverStatus.serverPort = port;
-        } else {
-            serverStatus = new ServerStatus({
-                channelId: interaction.channelId,
-                serverIp: ip,
-                serverPort: port
-            });
-        }
+		if (existingMonitor) {
+			await interaction.editReply(
+				"❌ This channel is already monitoring a server. Remove it first.",
+			);
+			return;
+		}
 
-        await serverStatus.save();
+		// Create new monitor
+		const serverStatus = new ServerStatus({
+			channelId: interaction.channelId,
+			serverIp: ip,
+			serverPort: port,
+		});
 
-        // Immediately update the status
-        await MinecraftMonitor.updateServer(interaction.client, serverStatus);
+		await serverStatus.save();
+		await MinecraftMonitor.updateServer(interaction.client, serverStatus);
 
-        await interaction.editReply('✅ Minecraft server monitoring has been set up in this channel.');
-    } catch (error) {
-        console.error('Error setting up Minecraft server monitoring:', error);
-        await interaction.editReply('❌ Failed to set up Minecraft server monitoring. Please try again later.');
-    }
+		await interaction.editReply("✅ Server monitoring has been set up.");
+	} catch (error) {
+		console.error("Error in monitor add command:", error);
+		await interaction.editReply(
+			"❌ Failed to set up server monitoring. Please try again.",
+		);
+	}
 });
 
 export { group };

@@ -1,3 +1,5 @@
+//src/services/MinecraftMonitor.ts
+
 import type { Client } from "sunar";
 import type { TextChannel } from "discord.js";
 import { EmbedBuilder } from "discord.js";
