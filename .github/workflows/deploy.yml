@@ -16,11 +16,13 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          username: 'root'
           key: ${{ secrets.DEPLOY_KEY }}
           script: >
             cd /var/www/discord-bot &&
             git config --global --add safe.directory /var/www/discord-bot &&
             git pull &&
             bun install &&
-            pm2 reload discord-bot || pm2 start --name discord-bot --cwd /var/www/discord-bot --interpreter /root/.bun/bin/bun npm -- start:prod && pm2 save
+            pm2 reload discord-bot ||
+            pm2 start --name discord-bot --cwd /var/www/discord-bot -c "bun src/index.ts" &&
+            pm2 save
