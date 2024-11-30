@@ -16,9 +16,7 @@ const start = async () => {
 		],
 	});
 
-	await load(
-		`${dirname(import.meta.url)}/{commands,signals,middleware,interactions}/**/*.{js,ts}`,
-	);
+	await load("src/{commands,signals,middleware,interactions}/**/*.{js,ts}");
 	await client.login(process.env.DISCORD_TOKEN);
 };
 
