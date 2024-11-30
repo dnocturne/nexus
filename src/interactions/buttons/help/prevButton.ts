@@ -1,6 +1,6 @@
 // src/interactions/buttons/help/prevButton.ts
 import { Button, execute } from "sunar";
-import { createCategoryEmbed } from "../../../utils/helpEmbeds";
+import { createCategoryEmbed } from "@/utils/helpEmbeds";
 
 const button = new Button({ id: "help_prev" });
 

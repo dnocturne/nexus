@@ -1,7 +1,7 @@
 //src/commands/minecraft/monitor/server/remove.ts
 
 import { Group, execute } from "sunar";
-import { ServerStatus } from "../../../../models/ServerStatus";
+import { ServerStatus } from "@/models/ServerStatus";
 
 const group = new Group("monitor", "server", "remove");
 

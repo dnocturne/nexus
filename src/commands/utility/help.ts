@@ -1,6 +1,6 @@
 // src/commands/utility/help.ts
 import { Slash, execute, config } from "sunar";
-import { createInitialHelpEmbed } from "../../utils/helpEmbeds";
+import { createInitialHelpEmbed } from "@/utils/helpEmbeds";
 
 const slash = new Slash({
 	name: "help",

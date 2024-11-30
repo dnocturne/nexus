@@ -6,7 +6,7 @@ import {
 	ButtonBuilder,
 	ButtonStyle,
 } from "discord.js";
-import { getCommandsByCategory } from "./commandUtils";
+import { getCommandsByCategory } from "@/utils/commandUtils";
 
 const COMMANDS_PER_PAGE = 8;
 

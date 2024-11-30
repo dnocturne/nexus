@@ -1,7 +1,7 @@
 // src/signals/ready.ts
 import { Signal, execute } from "sunar";
 import { registerCommands } from "sunar/registry";
-import { MinecraftMonitor } from "../../services/MinecraftMonitor";
+import { MinecraftMonitor } from "@/services/MinecraftMonitor";
 
 const signal = new Signal("ready", { once: true });
 

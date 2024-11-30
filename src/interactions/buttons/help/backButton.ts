@@ -1,6 +1,6 @@
 // src/interactions/buttons/help/backButton.ts
 import { Button, execute } from "sunar";
-import { createInitialHelpEmbed } from "../../../utils/helpEmbeds";
+import { createInitialHelpEmbed } from "@/utils/helpEmbeds";
 
 const button = new Button({ id: "help_back" });
 

@@ -4,8 +4,8 @@ import type { Client } from "sunar";
 import type { TextChannel } from "discord.js";
 import { EmbedBuilder } from "discord.js";
 import { GameDig } from "gamedig";
-import type { IServerStatus } from "../models/ServerStatus";
-import { ServerStatus } from "../models/ServerStatus";
+import type { IServerStatus } from "@/models/ServerStatus";
+import { ServerStatus } from "@/models/ServerStatus";
 
 interface ServerQueryResult {
 	isOnline: boolean;

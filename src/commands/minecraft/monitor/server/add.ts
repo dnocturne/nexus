@@ -1,8 +1,8 @@
 // src/commands/minecraft/monitor/server/add.ts
 import { Group, execute, config, protect } from "sunar";
-import { ServerStatus } from "../../../../models/ServerStatus";
-import { MinecraftMonitor } from "../../../../services/MinecraftMonitor";
-import { adminOnly } from "../../../../middleware/adminOnly";
+import { ServerStatus } from "@/models/ServerStatus";
+import { MinecraftMonitor } from "@/services/MinecraftMonitor";
+import { adminOnly } from "@/middleware/adminOnly";
 
 const group = new Group("monitor", "server", "add");
 

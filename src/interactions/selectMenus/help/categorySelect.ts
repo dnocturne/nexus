@@ -1,7 +1,7 @@
 // src/interactions/selectMenus/help/categorySelect.ts
 import { SelectMenu, execute } from "sunar";
 import { ComponentType } from "discord.js";
-import { createCategoryEmbed } from "../../../utils/helpEmbeds";
+import { createCategoryEmbed } from "@/utils/helpEmbeds";
 
 // Ensure the ID matches exactly what we set in createInitialHelpEmbed
 const select = new SelectMenu({
