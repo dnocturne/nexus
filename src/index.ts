@@ -1,5 +1,5 @@
 // src/index.ts
-import { Client, dirname, load } from "sunar";
+import { Client, load } from "sunar";
 import { GatewayIntentBits } from "discord.js";
 import { validateEnv } from "./utils/validateEnv";
 import { connectDatabase } from "./utils/database";
