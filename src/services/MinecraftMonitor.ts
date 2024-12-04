@@ -80,7 +80,7 @@ export const MinecraftMonitor = {
 
 		// Add footer with timestamp
 		embed.setFooter({
-			text: "Auto-updates every minute",
+			text: "Auto-updates every 5 minutes",
 		});
 
 		// Set timestamp
@@ -131,12 +131,12 @@ export const MinecraftMonitor = {
 	},
 
 	async startMonitoring(client: Client) {
-		// Update every minute
+		// Update every 5 minutes
 		setInterval(async () => {
 			const servers = await ServerStatus.find();
 			for (const server of servers) {
 				await this.updateServer(client, server);
 			}
-		}, 60000); // 1 minute interval
+		}, 300000); // 1 minute interval
 	},
 };
